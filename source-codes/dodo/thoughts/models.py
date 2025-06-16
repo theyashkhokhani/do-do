@@ -15,8 +15,8 @@ class ToDo(models.Model):
     ]
     folder = models.ForeignKey(
         Folder,
-        on_delete=models.CASCADE,
-        null=True)
+        on_delete=models.CASCADE
+    )
     tag = models.CharField(max_length=19)
     description = models.CharField(max_length=240)
     status = models.CharField(max_length=10, choices=COMPLETION_STATUS)
@@ -26,8 +26,8 @@ class ToDo(models.Model):
 class Card(models.Model):
     folder = models.ForeignKey(
         Folder,
-        on_delete=models.CASCADE,
-        null=True)
+        on_delete=models.CASCADE
+    )
     title = models.CharField(max_length=100)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

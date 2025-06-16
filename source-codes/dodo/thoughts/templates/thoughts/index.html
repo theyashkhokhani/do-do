@@ -1,9 +1,45 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block title %}
 Thoughts
 {% endblock %}
 
 {% block content %}
-<h1>Test</h1>
+<div class="m-5">
+    <h5>Test</h5>
+
+    <ul class="list-group list-group-horizontal">
+        {% for folder in folders %}
+            <a href="#" >
+                <li class="list-group-item list-group-item-horizontal align-content-center">
+                    <img src="{% static "/images/folder_icon.png" %}" class="card-img-top float-start" alt="..." style="width:100px">
+                    {{folder.name}}-{{folder.user}}
+                </li>
+            </a>
+        {% endfor %}
+    </ul>
+
+    <div class="d-inline-block mt-4">
+        <ul class="list-group float-start pe-3">
+            {% for todo in todos %}
+                    <li class="list-group-item">
+                        {{todo.tag}} - {{todo.description}}
+                    </li>
+                </a>
+            {% endfor %}
+        </ul>
+
+        <div class="card " style="width: 18rem;">
+            {% for card in cards %}
+                <a href="#" class="card-link">
+                    <div class="card-body">
+                        <h5 class="card-title">{{card.title}}</h5>
+                        <p class="card-text">{{card.description}}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
 {% endblock %}
