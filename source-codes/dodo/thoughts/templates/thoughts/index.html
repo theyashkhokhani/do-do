@@ -9,20 +9,23 @@ Thoughts
 <div class="m-5">
     <h5>Test</h5>
 
+    {% comment %} This are folders! {% endcomment %}
     <ul class="list-group list-group-horizontal">
         {% for folder in folders %}
-            <a href="#" >
-                <li class="list-group-item list-group-item-horizontal align-content-center">
-                    <img src="{% static "/images/folder_icon.png" %}" class="card-img-top float-start" alt="..." style="width:100px">
-                    {{folder.name}}-{{folder.user}}
-                </li>
-            </a>
+        <a href="#" >
+            <li class="list-group-item list-group-item-horizontal align-content-center">
+                <img src="{% static "/images/folder_icon.png" %}" class="card-img-top float-start" alt="..." style="width:100px">
+                {{folder.name}}
+            </li>
+        </a>
         {% endfor %}
     </ul>
-
+    
+    {% comment %} This are todos! {% endcomment %}
+    {% comment %} This are todos! {% endcomment %}
     <div class="d-inline-block mt-4">
         <ul class="list-group float-start pe-3">
-            {% for todo in todos %}
+            {% for todo in homeTodos %}
                     <li class="list-group-item">
                         {{todo.tag}} - {{todo.description}}
                     </li>
@@ -31,7 +34,7 @@ Thoughts
         </ul>
 
         <div class="card " style="width: 18rem;">
-            {% for card in cards %}
+            {% for card in homeCards %}
                 <a href="#" class="card-link">
                     <div class="card-body">
                         <h5 class="card-title">{{card.title}}</h5>
