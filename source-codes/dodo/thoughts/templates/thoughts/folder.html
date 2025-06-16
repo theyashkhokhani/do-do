@@ -1,33 +1,20 @@
 {% extends "layout.html" %}
-{% load static %}
 
 {% block title %}
-Thoughts
+Folder
 {% endblock %}
 
 {% block content %}
-<div class="m-5">
-    <h5>Test</h5>
-
-    {% comment %} This are folders! {% endcomment %}
-    <ul class="list-group list-group-horizontal">
-        {% for folder in folders %}
-        <a href="{% url 'folder' folder.id %}" >
-            <li class="list-group-item list-group-item-horizontal align-content-center">
-                <img src="{% static "/images/folder_icon.png" %}" class="card-img-top float-start" alt="..." style="width:100px">
-                {{folder.name}}
-            </li>
-        </a>
-        {% endfor %}
-    </ul>
-    
-    {% comment %} This are todos! {% endcomment %}
-    {% comment %} <a href="{% url 'todoform' folder.id %}">
+<div class="d-flex">
+    <h1>folder page</h1>
+    <a href="{% url 'todoform' folder_id %}">
         <button class="btn btn-primary">Add Todo</button>
-    </a> {% endcomment %}
+    </a>
+</div>
+
     <div class="d-inline-block mt-4">
         <ul class="list-group float-start pe-3">
-            {% for todo in homeTodos %}
+            {% for todo in todos %}
                     <li class="list-group-item">
                         {{todo.tag}} - {{todo.description}}
                     </li>
@@ -36,7 +23,7 @@ Thoughts
         </ul>
 
         <div class="card " style="width: 18rem;">
-            {% for card in homeCards %}
+            {% for card in cards %}
                 <a href="#" class="card-link">
                     <div class="card-body">
                         <h5 class="card-title">{{card.title}}</h5>
@@ -46,5 +33,5 @@ Thoughts
             {% endfor %}
         </div>
     </div>
-</div>
+
 {% endblock %}
