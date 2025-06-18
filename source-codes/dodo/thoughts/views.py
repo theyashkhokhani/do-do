@@ -9,10 +9,17 @@ def getHomeFolder():
 def index(request):
     folders = get_list_or_404(Folder, user=request.user)
 
+    print(folders)
+
+    counter = 0
     homeFolder = None
     for folder in folders:
         if folder.name=="Home":
             homeFolder = folder
+            break
+        counter += 1
+    
+    folders.pop(counter)
 
     homeTodos = ToDo.objects.filter(folder_id=homeFolder.id)
 
