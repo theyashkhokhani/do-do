@@ -9,8 +9,7 @@ def getHomeFolder():
 def index(request):
     folders = get_list_or_404(Folder, user=request.user)
 
-    print(folders)
-
+    # removed home folder from the folder's list as we are showing the content of the home folder on thoughts/index route.
     counter = 0
     homeFolder = None
     for folder in folders:
@@ -18,14 +17,12 @@ def index(request):
             homeFolder = folder
             break
         counter += 1
-    
     folders.pop(counter)
 
     homeTodos = ToDo.objects.filter(folder_id=homeFolder.id)
-
     homeCards = Card.objects.filter(folder_id=homeFolder.id)
 
-    return render(request, 'thoughts/index.html', {'folders': folders, 'homeTodos': homeTodos, 'homeCards': homeCards})
+    return render(request, 'thoughts/index.html', {'folders': folders, 'homeTodos': homeTodos, 'homeCards': homeCards,  'homeFolder': homeFolder})
 
 # thoughts/folder_id
 def folder(request, folder_id):
@@ -34,6 +31,7 @@ def folder(request, folder_id):
 
     return render(request, 'thoughts/folder.html', {'todos': todos, 'cards': cards, 'folder_id': folder_id})
 
+# folderform
 def folderForm(request):
     if request.method == "POST":
         form = AddFolderForm(request.POST)
@@ -48,7 +46,6 @@ def folderForm(request):
     return render(request, 'thoughts/folderForm.html', {'form': form})
 
 def todoForm(request, folder_id):
-
     if request.method == "POST":
         form = AddToDoForm(request.POST)
         if form.is_valid():
@@ -61,6 +58,14 @@ def todoForm(request, folder_id):
         
     return render(request, 'thoughts/todoForm.html', {'form': form})
 
-def cardForm(request):
-    form = AddFolderForm()
+def cardForm(request, folder_id):
+    if request.method == "POST":
+        form = AddCardForm(request.POST)
+        if form.is_valid():
+            card = form.save(commit=False)
+            card.folder_id = folder_id
+            card.save()
+            return redirect('index')
+    else:
+        form = AddCardForm()
     return render(request, 'thoughts/cardForm.html', {'form': form})

@@ -10,6 +10,7 @@ Thoughts
     <h5>Test</h5>
 
     {% comment %} This are folders! {% endcomment %}
+    <a href="{% url 'folderform' %}" class="btn btn-outline-warning">Add Folder</a>
     <ul class="list-group list-group-horizontal">
         {% for folder in folders %}
         <a href="{% url 'folder' folder.id %}" >
@@ -22,9 +23,7 @@ Thoughts
     </ul>
     
     {% comment %} This are todos! {% endcomment %}
-    {% comment %} <a href="{% url 'todoform' folder.id %}">
-        <button class="btn btn-primary">Add Todo</button>
-    </a> {% endcomment %}
+    <a href="{% url 'todoform' homeFolder.id  %}" class="btn btn-outline-light">Add To-Do</a>
     <div class="d-inline-block mt-4">
         <ul class="list-group float-start pe-3">
             {% for todo in homeTodos %}
@@ -35,6 +34,7 @@ Thoughts
             {% endfor %}
         </ul>
 
+        <a href="{% url 'cardform' homeFolder.id  %}" class='btn btn-outline-primary'>Add Card</a>
         <div class="card " style="width: 18rem;">
             {% for card in homeCards %}
                 <a href="#" class="card-link">

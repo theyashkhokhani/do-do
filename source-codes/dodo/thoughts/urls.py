@@ -5,6 +5,6 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('folderform/', views.folderForm, name="folderform"),
     path('todoform/<int:folder_id>', views.todoForm, name="todoform"),
-    path('cardform/', views.cardForm, name="cardform"),
+    path('cardform/<int:folder_id>', views.cardForm, name="cardform"),
     path('<int:folder_id>/', views.folder, name="folder"),
 ]
