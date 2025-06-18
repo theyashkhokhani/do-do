@@ -13,12 +13,16 @@ Thoughts
     <a href="{% url 'folderform' %}" class="btn btn-outline-warning">Add Folder</a>
     <ul class="list-group list-group-horizontal">
         {% for folder in folders %}
-        <a href="{% url 'folder' folder.id %}" >
-            <li class="list-group-item list-group-item-horizontal align-content-center">
-                <img src="{% static "/images/folder_icon.png" %}" class="card-img-top float-start" alt="..." style="width:100px">
-                {{folder.name}}
-            </li>
-        </a>
+            <div class="m-4">
+                <a href="{% url 'folder' folder.id %}">
+                    <li class="list-group-item list-group-item-horizontal align-content-center">
+                        <img src="{% static "/images/folder_icon.png" %}" class="card-img-top float-start" alt="..." style="width:100px">
+                        {{folder.name}}
+                    </li>
+                </a>
+                <a href="{% url 'editfolderform' folder.id %}" class="btn btn-outline-warning">Edit</a>
+                <a href="{% url 'deletefolderform' folder.id %}" class="btn btn-outline-danger">Delete</a>
+            </div>
         {% endfor %}
     </ul>
     
@@ -27,9 +31,11 @@ Thoughts
     <div class="d-inline-block mt-4">
         <ul class="list-group float-start pe-3">
             {% for todo in homeTodos %}
-                    <li class="list-group-item">
+            <li class="list-group-item">
                         {{todo.tag}} - {{todo.description}}
-                    </li>
+                        <a href="{% url 'edittodoform' todo.id  %}" class="btn btn-outline-light">Edit</a>
+                        <a href="{% url 'deletetodoform' todo.id %}" class="btn btn-outline-success">Done</a>
+                    </li>   
                 </a>
             {% endfor %}
         </ul>
@@ -37,10 +43,11 @@ Thoughts
         <a href="{% url 'cardform' homeFolder.id  %}" class='btn btn-outline-primary'>Add Card</a>
         <div class="card " style="width: 18rem;">
             {% for card in homeCards %}
-                <a href="#" class="card-link">
+                <a href="{% url 'editcardform' card.id %}" class="card-link">
                     <div class="card-body">
                         <h5 class="card-title">{{card.title}}</h5>
                         <p class="card-text">{{card.description}}</p>
+                        <a href="{% url 'deletecardform' card.id %}" class="btn btn-outline-danger">Remove</a>
                     </div>
                 </a>
             {% endfor %}

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_list_or_404, redirect
+from django.shortcuts import render, get_list_or_404, redirect, get_object_or_404
 from .models import Folder, ToDo, Card
 from .forms import AddFolderForm, AddToDoForm, AddCardForm
 
@@ -69,3 +69,64 @@ def cardForm(request, folder_id):
     else:
         form = AddCardForm()
     return render(request, 'thoughts/cardForm.html', {'form': form})
+
+def folderEditForm(request, folder_id):
+    folder = get_object_or_404(Folder, pk=folder_id)
+    if request.method == "POST":
+        form = AddFolderForm(request.POST, instance=folder)
+        if form.is_valid():
+            folder = form.save(commit=False)
+            # folder.user = request.user
+            folder.save()
+            return redirect('index')
+    else:
+        form = AddFolderForm(instance=folder)
+    return render(request, 'thoughts/folderForm.html', {'form': form})
+
+def todoEditForm(request, todo_id):
+    todo = get_object_or_404(ToDo, pk=todo_id)
+    if request.method == "POST":
+        form = AddToDoForm(request.POST, instance=todo)
+        if form.is_valid():
+            todo = form.save(commit=False)
+            # todo.folder = request.folder
+            todo.save()
+            return redirect('index')
+    else:
+        form = AddToDoForm(instance=todo)
+    return render(request, 'thoughts/folderForm.html', {'form': form})
+
+def cardEditForm(request, card_id):
+    card = get_object_or_404(Card, pk=card_id)
+    if request.method == "POST":
+        form = AddCardForm(request.POST, instance=card)
+        if form.is_valid():
+            card = form.save(commit=False)
+            # card.folder = request.folder
+            card.save()
+            return redirect('index')
+    else:
+        form = AddCardForm(instance=card)
+    return render(request, 'thoughts/folderForm.html', {'form': form})
+
+def folderDeleteForm(request, folder_id):
+    folder = get_object_or_404(Folder, pk=folder_id, user=request.user)
+    if request.method == "POST":
+        folder.delete()
+        return redirect('index')
+    return render(request, 'thoughts/folderDeleteConfirm.html', {'folder': folder})
+
+def todoDeleteForm(request, todo_id):
+    todo = get_object_or_404(ToDo, pk=todo_id)
+    if request.method == "POST":
+        todo.delete()
+        return redirect('index')
+    return render(request, 'thoughts/todoDeleteConfirm.html', {'todo': todo})
+
+def cardDeleteForm(request, card_id):
+    card = get_object_or_404(Card, pk=card_id)
+    if request.method == "POST":
+        card.delete()
+        return redirect('index')
+    return render(request, 'thoughts/cardDeleteConfirm.html', {'card': card})
+

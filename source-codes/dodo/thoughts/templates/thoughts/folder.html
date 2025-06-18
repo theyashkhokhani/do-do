@@ -20,18 +20,21 @@ Folder
             {% for todo in todos %}
                     <li class="list-group-item">
                         {{todo.tag}} - {{todo.description}}
+                        <a href="{% url 'edittodoform' todo.id  %}" class="btn btn-outline-light">Edit</a>
+                        <a href="{% url 'deletetodoform' todo.id %}" class="btn btn-outline-success">Done</a>   
                     </li>
-                </a>
+                     
             {% endfor %}
         </ul>
 
         <div class="card " style="width: 18rem;">
             {% for card in cards %}
-                <a href="#" class="card-link">
+                <a href="{% url 'editcardform' card.id %}" class="card-link">
                     <div class="card-body">
                         <h5 class="card-title">{{card.title}}</h5>
                         <p class="card-text">{{card.description}}</p>
                     </div>
+                    <a href="{% url 'deletecardform' card.id %}" class="btn btn-outline-danger">Remove</a>
                 </a>
             {% endfor %}
         </div>
