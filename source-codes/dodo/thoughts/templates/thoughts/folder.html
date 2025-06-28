@@ -5,39 +5,47 @@ Folder
 {% endblock %}
 
 {% block content %}
-<div class="d-flex">
-    <h1>folder page</h1>
-    <a href="{% url 'todoform' folder_id %}">
-        <button class="btn btn-primary">Add Todo</button>
-    </a>
-    <a href="{% url 'cardform' folder_id %}">
-        <button class="btn btn-primary">Add Card</button>
-    </a>
-</div>
-
-    <div class="d-inline-block mt-4">
-        <ul class="list-group float-start pe-3">
-            {% for todo in todos %}
-                    <li class="list-group-item">
-                        {{todo.tag}} - {{todo.description}}
-                        <a href="{% url 'edittodoform' todo.id  %}" class="btn btn-outline-light">Edit</a>
-                        <a href="{% url 'deletetodoform' todo.id %}" class="btn btn-outline-success">Done</a>   
-                    </li>
-                     
-            {% endfor %}
-        </ul>
-
-        <div class="card " style="width: 18rem;">
-            {% for card in cards %}
-                <a href="{% url 'editcardform' card.id %}" class="card-link">
-                    <div class="card-body">
-                        <h5 class="card-title">{{card.title}}</h5>
-                        <p class="card-text">{{card.description}}</p>
-                    </div>
-                    <a href="{% url 'deletecardform' card.id %}" class="btn btn-outline-danger">Remove</a>
+<main class="">
+    <div class="flex flex-col lg:flex-row gap-3">
+        <div class="flex flex-col gap-1 lg:w-1/2">
+            <div class="w-full py-2 text-center border-2 border-slate-400">
+                <a href="{% url 'todoform' folder_id %}">
+                    <button class="">Add Todo</button>
                 </a>
-            {% endfor %}
+            </div>
+            <div class="flex flex-col max-h-[420px] overflow-auto">
+                <ul class="">
+                    {% for todo in todos %}
+                        <li class="">
+                            {{todo.tag}} - {{todo.description}}
+                            <a href="{% url 'edittodoform' todo.id  %}" class="">Edit</a>
+                            <a href="{% url 'deletetodoform' todo.id %}" class="">Done</a>   
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        
+        <div class="flex flex-col gap-1 lg:w-1/2">
+            <div class="w-full py-2 text-center border-2 border-slate-400">
+                <a href="{% url 'cardform' folder_id %}">
+                    <button class="">Add Card</button>
+                </a>
+            </div>
+            <div class="flex flex-col w-full gap-1  bg-amber-950 max-h-[500px] overflow-auto lg:grid lg:grid-cols-2">
+                {% for card in cards %}
+                    <div>
+                        <a href="{% url 'editcardform' card.id %}" class="card-link">
+                            <div class="card-body">
+                                <h5 class="card-title">{{card.title}}</h5>
+                                <p class="card-text">{{card.description}}</p>
+                            </div>
+                            <a href="{% url 'deletecardform' card.id %}" class="">Remove</a>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-
+</main>
 {% endblock %}

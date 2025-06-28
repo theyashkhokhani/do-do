@@ -6,52 +6,91 @@ Thoughts
 {% endblock %}
 
 {% block content %}
-<div class="m-5">
-    <h5>Test</h5>
+<main class="centerScales">
+    {% comment %} <h5>Test</h5> {% endcomment %}
 
-    {% comment %} This are folders! {% endcomment %}
-    <a href="{% url 'folderform' %}" class="btn btn-outline-warning">Add Folder</a>
-    <ul class="list-group list-group-horizontal">
-        {% for folder in folders %}
-            <div class="m-4">
-                <a href="{% url 'folder' folder.id %}">
-                    <li class="list-group-item list-group-item-horizontal align-content-center">
-                        <img src="{% static "/images/folder_icon.png" %}" class="card-img-top float-start" alt="..." style="width:100px">
-                        {{folder.name}}
-                    </li>
-                </a>
-                <a href="{% url 'editfolderform' folder.id %}" class="btn btn-outline-warning">Edit</a>
-                <a href="{% url 'deletefolderform' folder.id %}" class="btn btn-outline-danger">Delete</a>
+    {% comment %} Folders starts here {% endcomment %}
+    <div class="flex flex-col gap-2 mb-3">        
+        <div class="flex gap-1 items-center h-fit justify-end">
+            <div class="primaryButton">
+                <a href="{% url 'folderform' %}" class="">Create Folder</a>
             </div>
-        {% endfor %}
-    </ul>
-    
-    {% comment %} This are todos! {% endcomment %}
-    <a href="{% url 'todoform' homeFolder.id  %}" class="btn btn-outline-light">Add To-Do</a>
-    <div class="d-inline-block mt-4">
-        <ul class="list-group float-start pe-3">
-            {% for todo in homeTodos %}
-            <li class="list-group-item">
-                        {{todo.tag}} - {{todo.description}}
-                        <a href="{% url 'edittodoform' todo.id  %}" class="btn btn-outline-light">Edit</a>
-                        <a href="{% url 'deletetodoform' todo.id %}" class="btn btn-outline-success">Done</a>
-                    </li>   
-                </a>
+            {% comment %} <div class="h-6 border-l-2 border-border-white-1"></div> {% endcomment %}
+            <div class="secondaryButton">
+                <a href="{% url 'folderform' %}" >View all folders</a>
+            </div>
+        </div>
+        
+        <ul class="flex gap-3 overflow-x-auto h-[100px] items-center">
+            {% for folder in folders %}
+                <li class="flex flex-col w-full rounded-lg gap-1 hover:bg-bg-black-1 px-3 py-2 group transition duration-700 h-full">
+                        <a href="{% url 'folder' folder.id %}">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-folder-closed text-5xl text-text-blue-1"></i>
+                                <span class="font-semibold">{{folder.name}}</span>
+                            </div>
+                        </a>
+
+                    <div class="flex items-center gap-1 justify-end lg:hidden group-hover:flex transition duration-700">
+                        <div class="actionButton">
+                            <a href="{% url 'editfolderform' folder.id %}">Edit</a>
+                        </div>
+                        <div class="actionButton text-red-500 bg-red-500/20 hover:bg-red-500/10">
+                            <a href="{% url 'deletefolderform' folder.id %}">Delete</a>
+                        </div>
+                    </div>
+                </li>
             {% endfor %}
         </ul>
-
-        <a href="{% url 'cardform' homeFolder.id  %}" class='btn btn-outline-primary'>Add Card</a>
-        <div class="card " style="width: 18rem;">
-            {% for card in homeCards %}
-                <a href="{% url 'editcardform' card.id %}" class="card-link">
-                    <div class="card-body">
-                        <h5 class="card-title">{{card.title}}</h5>
-                        <p class="card-text">{{card.description}}</p>
-                        <a href="{% url 'deletecardform' card.id %}" class="btn btn-outline-danger">Remove</a>
-                    </div>
-                </a>
-            {% endfor %}
-        </div>
     </div>
-</div>
+    {% comment %} Folder ends here {% endcomment %}
+
+    {% comment %} This are todos! {% endcomment %}
+    {% comment %} <div class="-mx-12 hover:bg-bg-blue-1/5 bg-bg-blue-1/10  rounded-t-2xl pt-5"> {% endcomment %}
+        <div class="flex flex-col lg:flex-row gap-3">
+            <div class="flex flex-col gap-2 lg:w-1/2">
+                <a href="{% url 'todoform' homeFolder.id %}" class="primaryButton">Add To-Do</a>
+
+                {% comment %} <div class="flex flex-col max-h-[420px] overflow-auto"> {% endcomment %}
+                    <ul class="flex flex-col max-h-[420px] overflow-auto gap-1">
+                        {% for todo in homeTodos %}
+                        <li class="flex justify-between overflow-hidden">
+                            <div class="flex items-center gap-3">
+                                <span class="px-2 py-0.5 bg-bg-blue-1/90 rounded-md font-medium text-sm">{{todo.tag}}</span>
+                                <p class="text-sm">
+                                    {{todo.description}}
+                                </p>
+                            </div>
+                            <div>
+                                <a href="{% url 'edittodoform' todo.id  %}" class="actionButton">Edit</a>
+                                <a href="{% url 'deletetodoform' todo.id %}" class="actionButton text-green-500 bg-green-500/20 hover:bg-green-500/10">Done</a>
+                            </div>
+                        </li>   
+                        {% endfor %}
+                    </ul>
+                {% comment %} </div> {% endcomment %}
+            </div>
+
+            <div class="flex flex-col gap-2 lg:w-1/2">
+                <a href="{% url 'cardform' homeFolder.id  %}" class="primaryButton">Add Card</a>
+                <div class="flex flex-col w-full gap-3 max-h-[420px] overflow-auto lg:grid lg:grid-cols-2">
+                    {% for card in homeCards %}
+                    <div class="flex flex-col border-2 border-border-black-3 hover:bg-bg-black-1 rounded-3xl group py-4 px-4 gap-4">
+                        <div class="flex flex-col items-start">
+                            <div class="flex gap-5 justify-between">
+                                <h3 class="text-xl font-bold">{{card.title}}</h3>
+                            </div>
+                            <p class="text-sm">{{card.description}}</p>
+                        </div>
+                        <div class="flex w-full gap-2">
+                            <a href="{% url 'editcardform' card.id %}" class="actionButton lg:hidden group-hover:block w-1/2 text-center">Edit</a>
+                            <a href="{% url 'deletecardform' card.id %}" class="actionButton lg:hidden group-hover:block w-1/2 text-center text-red-500 bg-red-500/20 hover:bg-red-500/10">Delete</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% comment %} </div> {% endcomment %}
+</main>
 {% endblock %}

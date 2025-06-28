@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
 /**
@@ -8,3 +9,42 @@
   * the scope of this path.
   */
 @source "../../../**/*.{html,py,js}";
+
+@theme {
+  --font-display: 'Poppins', sans-serif;
+  --color-bg-black-1: #1D1D1D;
+  --color-bg-black-2: #2B2B2B;
+  --color-bg-black-3: #3E3E3E;
+  --color-bg-white-1: #F0F0F0;
+  --color-bg-blue-1: #5B8EDE;
+
+  --color-text-black-1: #1D1D1D;
+  --color-text-black-2: #2B2B2B;
+  --color-text-black-3: #3E3E3E;
+  --color-text-white-1: #F0F0F0;
+  --color-text-blue-1: #5B8EDE;
+
+  --color-border-black-1: #1D1D1D;
+  --color-border-black-2: #2B2B2B;
+  --color-border-black-3: #3E3E3E;
+  --color-border-white-1: #F0F0F0;
+  --color-border-blue-1: #5B8EDE;
+}
+
+@layer base {
+  /* body {
+    @apply font-display;
+  } */
+  .centerScales {
+    @apply px-12;
+  }
+  .primaryButton {
+    @apply px-2 py-1 bg-bg-black-1 hover:bg-bg-black-3 rounded-md text-text-white-1 text-center transition duration-700;
+  }
+  .secondaryButton {
+    @apply px-2 py-1 rounded-md text-text-white-1 hover:bg-bg-black-1 transition duration-700;
+  }
+  .actionButton {
+    @apply text-sm font-medium bg-bg-white-1/20 hover:bg-bg-white-1/10 px-2 py-1 rounded-md;
+  }
+}
