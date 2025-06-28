@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'thoughts',
     'accounts',
+    'tailwind',
+    'theme',
 ]
 
 MIDDLEWARE = [
@@ -134,3 +136,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = "/accounts/login"
 LOGIN_REDIRECT_URL = "/thoughts/"
 LOGOUT_REDIRECT_URL = "/"
+
+# Tailwind Config
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = ['127.0.0.1']
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
