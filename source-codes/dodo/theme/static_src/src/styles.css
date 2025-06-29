@@ -45,6 +45,6 @@
     @apply px-2 py-1 rounded-md text-text-white-1 hover:bg-bg-black-1 transition duration-700;
   }
   .actionButton {
-    @apply text-sm font-medium bg-bg-white-1/20 hover:bg-bg-white-1/10 px-2 py-1 rounded-md;
+    @apply text-sm font-medium bg-bg-white-1/20 hover:bg-bg-white-1/10 px-2 py-1 rounded-md transition duration-700;
   }
 }

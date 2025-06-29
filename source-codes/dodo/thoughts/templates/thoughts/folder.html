@@ -5,43 +5,41 @@ Folder
 {% endblock %}
 
 {% block content %}
-<main class="">
+<main class="centerScales">
     <div class="flex flex-col lg:flex-row gap-3">
         <div class="flex flex-col gap-1 lg:w-1/2">
-            <div class="w-full py-2 text-center border-2 border-slate-400">
-                <a href="{% url 'todoform' folder_id %}">
-                    <button class="">Add Todo</button>
-                </a>
-            </div>
-            <div class="flex flex-col max-h-[420px] overflow-auto">
-                <ul class="">
-                    {% for todo in todos %}
-                        <li class="">
-                            {{todo.tag}} - {{todo.description}}
-                            <a href="{% url 'edittodoform' todo.id  %}" class="">Edit</a>
-                            <a href="{% url 'deletetodoform' todo.id %}" class="">Done</a>   
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
+            <a href="{% url 'todoform' folder_id %}" class="primaryButton">Add Todo</a>
+            <ul class="flex flex-col max-h-[420px] overflow-auto gap-1">
+                {% for todo in todos %}
+                    <li class="flex justify-between overflow-hidden">
+                        <div class="flex items-center gap-3">
+                            <span class="px-2 py-0.5 bg-bg-blue-1/90 rounded-md font-medium text-sm">{{todo.tag}}</span>
+                            <p class="text-sm">{{todo.description}}</p>
+                        </div>
+                        <div>
+                            <a href="{% url 'edittodoform' todo.id  %}" class="actionButton">Edit</a>
+                            <a href="{% url 'deletetodoform' todo.id %}" class="actionButton text-green-500 bg-green-500/20 hover:bg-green-500/10">Done</a>   
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
         
         <div class="flex flex-col gap-1 lg:w-1/2">
-            <div class="w-full py-2 text-center border-2 border-slate-400">
-                <a href="{% url 'cardform' folder_id %}">
-                    <button class="">Add Card</button>
-                </a>
-            </div>
-            <div class="flex flex-col w-full gap-1  bg-amber-950 max-h-[500px] overflow-auto lg:grid lg:grid-cols-2">
+            <a href="{% url 'cardform' folder_id %}" class="primaryButton">Add Card</a>
+            <div class="flex flex-col w-full gap-3 max-h-[420px] overflow-auto lg:grid lg:grid-cols-2">
                 {% for card in cards %}
-                    <div>
-                        <a href="{% url 'editcardform' card.id %}" class="card-link">
-                            <div class="card-body">
-                                <h5 class="card-title">{{card.title}}</h5>
-                                <p class="card-text">{{card.description}}</p>
+                    <div class="flex flex-col border-2 border-border-black-3 hover:bg-bg-black-1 rounded-3xl group py-4 px-4 gap-4 transition duration-400 h-auto">
+                        <div class="flex flex-col items-start">
+                            <div class="flex gap-5 justify-between">
+                                <h3 class="text-xl font-bold">{{card.title}}</h3>
                             </div>
-                            <a href="{% url 'deletecardform' card.id %}" class="">Remove</a>
-                        </a>
+                            <p class="text-sm">{{card.description}}</p>
+                        </div>
+                        <div class="flex w-full gap-2">
+                            <a href="{% url 'editcardform' card.id %}" class="actionButton lg:hidden group-hover:block w-1/2 text-center">Edit</a>
+                            <a href="{% url 'deletecardform' card.id %}" class="actionButton lg:hidden group-hover:block w-1/2 text-center text-red-500 bg-red-500/20 hover:bg-red-500/10">Delete</a>
+                        </div>
                     </div>
                 {% endfor %}
             </div>
