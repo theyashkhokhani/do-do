@@ -5,13 +5,33 @@ Registrations
 {% endblock %}
 
 {% block content %}
-    <h1>Registration</h1>
+    <h1 class="text-4xl font-bold text-center">Registration</h1>
 
     <form  method="POST">
         {% csrf_token %}
 
-        {{ form.as_p }}
-        <button type="submit">Register</button>
+        {% comment %} {{ form.as_p }} {% endcomment %}
+
+         <div class="form_group">
+            <div class="username w-fit ">
+                <label for="{{ form.username.id_for_label }}" class="font-semibold">{{ form.username.label}}</label>
+                <div class="border-2 rounded-xl border-border-black-3 text-2xl font-light">{{ form.username }}</div>
+            </div>
+            <div class="email w-fit ">
+                <label for="{{ form.email.id_for_label }}" class="font-semibold">{{ form.email.label}}</label>
+                <div class="border-2 rounded-xl border-border-black-3 text-2xl font-light">{{ form.email }}</div>
+            </div>
+            <div class="password1 w-fit ">
+                <label for="{{ form.password1.id_for_label }}" class="font-semibold">{{ form.password1.label}}</label>
+                <div class="border-2 rounded-xl border-border-black-3 text-2xl font-light">{{ form.password1 }}</div>
+            </div>
+            <div class="password2 w-fit ">
+                <label for="{{ form.password2.id_for_label }}" class="font-semibold">{{ form.password2.label}}</label>
+                <div class="border-2 rounded-xl border-border-black-3 text-2xl font-light">{{ form.password2 }}</div>
+            </div>
+        </div>
+    <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-3"  type="submit">Add</button>
+        {% comment %} <button type="submit">Register</button> {% endcomment %}
     </form>
 
 {% endblock %}

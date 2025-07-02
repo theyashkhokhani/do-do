@@ -1,14 +1,25 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>Folder Form</h1>
+<h1 class="text-4xl font-bold text-center mt-4">Folder Form</h1>
 
-<form  method="post">
+{% comment %} <form  method="post">
     {% csrf_token %}
 
     {{ form.as_p}}
 
     <button type="submit">Add</button>
+</form> {% endcomment %}
+
+<form  method="post">
+    {% csrf_token %}
+    <div class="form_group">
+        <div class="folder_name w-fit ">
+            <label for="{{ form.name.id_for_label }}" class="font-semibold">{{ form.name.label}}</label>
+            <div class="border-2 rounded-xl border-border-black-3 text-2xl font-light">{{ form.name }}</div>
+        </div>
+    </div>
+    <button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-3"  type="submit">Add</button>
 </form>
 
 {% endblock %}

@@ -50,19 +50,19 @@ Thoughts
         <div class="flex flex-col lg:flex-row gap-3">
             {% comment %} Todos here {% endcomment %}
             <div class="flex flex-col gap-2 lg:w-1/2">
-                <a href="{% url 'todoform' homeFolder.id %}" class="primaryButton">Add To-Do</a>
+                <a href="{% url 'todoform' homeFolder.id %}" class="primaryButton">Add Task</a>
 
                 {% comment %} <div class="flex flex-col max-h-[420px] overflow-auto"> {% endcomment %}
                     <ul class="flex flex-col max-h-[420px] overflow-auto gap-1">
                         {% for todo in homeTodos %}
                         <li class="flex justify-between overflow-hidden">
-                            <div class="flex items-center gap-3">
+                            <div class="w-full flex items-center gap-3 overflow-hidden">
                                 <span class="px-2 py-0.5 bg-bg-blue-1/90 rounded-md font-medium text-sm">{{todo.tag}}</span>
                                 <p class="text-sm">
-                                    {{todo.description}}
+                                    {{todo.description|safe}}
                                 </p>
                             </div>
-                            <div>
+                            <div class="w-[120px] h-fit flex gap-1  overflow-hidden">
                                 <a href="{% url 'edittodoform' todo.id  %}" class="actionButton">Edit</a>
                                 <a href="{% url 'deletetodoform' todo.id %}" class="actionButton text-green-500 bg-green-500/20 hover:bg-green-500/10">Done</a>
                             </div>
@@ -74,10 +74,10 @@ Thoughts
 
             {% comment %} Cards here {% endcomment %}
             <div class="flex flex-col gap-2 lg:w-1/2">
-                <a href="{% url 'cardform' homeFolder.id  %}" class="primaryButton">Add Card</a>
+                <a href="{% url 'cardform' homeFolder.id  %}" class="primaryButton">Add Note</a>
                 <div class="flex flex-col w-full gap-3 max-h-[420px] overflow-auto lg:grid lg:grid-cols-2 ">
                     {% for card in homeCards %}
-                    <div class="flex flex-col border-2 border-border-black-3 hover:bg-bg-black-1 rounded-3xl group py-4 px-4 gap-4 transition duration-400 h-auto">
+                    <div class="flex flex-col border-2 border-border-black-3 hover:border-border-black-3/0  hover:bg-bg-black-1 rounded-3xl group py-4 px-4 gap-4 transition duration-400 h-auto">
                         <div class="flex flex-col items-start">
                             <div class="flex gap-5 justify-between">
                                 <h3 class="text-xl font-bold">{{card.title}}</h3>

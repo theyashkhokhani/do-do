@@ -94,7 +94,7 @@ def todoEditForm(request, todo_id):
             return redirect('index')
     else:
         form = AddToDoForm(instance=todo)
-    return render(request, 'thoughts/folderForm.html', {'form': form})
+    return render(request, 'thoughts/todoForm.html', {'form': form})
 
 def cardEditForm(request, card_id):
     card = get_object_or_404(Card, pk=card_id)
@@ -107,7 +107,7 @@ def cardEditForm(request, card_id):
             return redirect('index')
     else:
         form = AddCardForm(instance=card)
-    return render(request, 'thoughts/folderForm.html', {'form': form})
+    return render(request, 'thoughts/cardForm.html', {'form': form})
 
 def folderDeleteForm(request, folder_id):
     folder = get_object_or_404(Folder, pk=folder_id, user=request.user)
