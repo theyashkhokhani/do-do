@@ -1,9 +1,68 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block title %}
 Landing | do-so
 {% endblock %}
 
 {% block content %}
-<h1 class="text-center">Landing Page</h1>
+{% comment %} <h1 class="text-center">Landing Page</h1> {% endcomment %}
+<main class="centerScales overflow-hidden">
+    <div id="hero" class="-mx-12 px-12 bg-gradient-to-b from-black  via-blue-700/30 to-transparent ">
+        <div class="flex flex-col gap-9 w-fit h-[600px] justify-center">
+            <div class="flex flex-col gap-4">
+                <h1 class="text-4xl lg:text-6xl font-bold">"Your thoughts, your way."</h1>
+                <h3 class="text-2xl lg:text-3xl font-light leading-slugify">Capture ideas quickly, organize seamlessly.</h3>
+            </div>
+            <div id="callToAction" class="flex gap-9">
+                <a href="" class="text-2xl font-bold text-white/80 hover:text-white transition">[ Try it now ]</a>
+                <a href="" class="text-2xl font-bold text-bg-blue-1 hover:text-bg-blue-1/80 transition">[ Login ]</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex flex-col gap-3 items-center h-fit">
+        <h2 class="text-4xl font-semibold text-text-black-3">Features</h2>
+        <div class="flex flex-col gap-3 lg:flex-row lg:justify-between">
+            <div class="flex flex-col gap-1 md:w-100 px-5 py-8 rounded-2xl border-2 border-border-black-3 hover:border-border-black-3/0 hover:bg-bg-black-3 transition">
+                <h3 class="text-2xl font-bold"><i class="fa-solid fa-lightbulb"></i> &nbsp;Quick Thoughts</h3>
+                <p class="text-lg text-gray-400">Document thoughts as you get them.</p>
+            </div>
+            <div class="flex flex-col gap-1 md:w-100 px-5 py-8 rounded-2xl border-2 border-border-black-3 hover:border-border-black-3/0 hover:bg-bg-black-3 transition">
+                <h3 class="text-2xl font-bold"><i class="fa-solid fa-folder-tree"></i> &nbsp;Organized Folders</h3>
+                <p class="text-lg text-gray-400">Create & label folders.</p>
+            </div>
+            <div class="flex flex-col gap-1 md:w-100  px-5 py-8 rounded-2xl border-2 border-border-black-3 hover:border-border-black-3/0 hover:bg-bg-black-3 transition">
+                <h3 class="text-2xl font-bold"><i class="fa-solid fa-note-sticky"></i> &nbsp;Card Mode</h3>
+                <p class="text-lg text-gray-400">Add long-form notes.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="flex flex-col items-center mt-12 gap-3">
+        <h2 class="text-4xl font-semibold text-text-black-3 ">Preview</h2>
+        <img src="{% static "./images/showcase.png" %}" alt="">
+    </div>
+    
+    <div class="flex flex-col gap-3 items-center">
+        <h2 class="text-4xl font-semibold text-text-black-3 ">How It Works?</h2>
+        <div class="flex flex-col gap-3 w-full lg:flex-row">
+            <div class="flex items-center border-2 px-6 py-2 border-border-blue-1/50 rounded-xl md:w-100">
+                <span class="text-2xl font-bold">Step 01: &nbsp;</span>
+                <p class="text-xl font-light">Sign Up &nbsp;<i class="fa-solid fa-right-to-bracket"></i></p>
+            </div>
+            <div class="flex items-center border-2 px-6 py-2 border-border-blue-1/50 rounded-xl md:w-100">
+                <span class="text-2xl font-bold">Step 02: &nbsp;</span>
+                <p class="text-xl font-light">Add Thought &nbsp;<i class="fa-solid fa-plus"></i></p>
+            </div>
+            <div class="flex items-center border-2 px-6 py-2 border-border-blue-1/50 rounded-xl md:w-100">
+                <span class="text-2xl font-bold">Step 03: &nbsp;</span>
+                <p class="text-xl font-light">Organize &nbsp;<i class="fa-solid fa-table-columns"></i></p>
+            </div>
+
+        </div>
+
+    </div>
+</main>
+
 {% endblock %}
